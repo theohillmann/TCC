@@ -1,0 +1,9 @@
+{
+  "labels":[
+    "alimenta\u00e7\u00e3o",
+    "medicamento",
+    "controle_glicemico",
+    "duvida_geral"
+  ],
+  "threshold":0.5
+}

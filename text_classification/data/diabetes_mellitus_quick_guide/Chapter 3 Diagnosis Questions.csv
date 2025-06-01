@@ -1,0 +1,11 @@
+pergunta,alimentacao,medicamento,controle_glicemico,duvida_geral,resposta,nome_artigo,trecho
+Qual valor de glicemia de jejum confirma diagnóstico de DM em duas medições?,False,False,True,False,≥ 126 mg/dL.,Diabetes Mellitus Quick Guide,Glicemia plasmática de jejum ≥ 126 mg/dL.
+Quais valores de glicemia 2 h após TOTG sugerem DM?,False,False,True,False,≥ 200 mg/dL.,Diabetes Mellitus Quick Guide,Glicemia duas horas após 75 g de glicose ≥ 200 mg/dL.
+Qual ponto de corte de HbA1c define DM?,False,False,True,False,"HbA1c ≥ 6,5 %.",Diabetes Mellitus Quick Guide,"HbA1c maior ou igual a 6,5 %."
+Quando basta um exame alterado para diagnóstico imediato?,False,False,True,False,Na presença de sintomas clássicos e glicemia ao acaso ≥ 200 mg/dL.,Diabetes Mellitus Quick Guide,…sintomas inequívocos… glicemia ao acaso ≥ 200 mg/dL.
+Que sintomas compõem os '4 Ps' da hiperglicemia?,False,False,True,False,"Poliúria, polidipsia, polifagia e perda de peso.",Diabetes Mellitus Quick Guide,Sintomatologia típica: poliúria; polidipsia; perda ponderal; polifagia.
+Qual teste é indicado em caso de dúvida diagnóstica após glicemia normal?,False,False,True,False,TOTG (Teste Oral de Tolerância à Glicose).,Diabetes Mellitus Quick Guide,…teste de tolerância oral à glicose (TOTG)…
+Quantos exames alterados são necessários para confirmar DM em indivíduo assintomático?,False,False,True,False,Dois exames distintos com resultados alterados.,Diabetes Mellitus Quick Guide,É necessário que haja alteração em dois exames.
+Qual combinação de exames numa mesma amostra pode confirmar DM sem repetição?,False,False,True,False,"Glicemia de jejum ≥ 126 mg/dL e HbA1c ≥ 6,5 %.",Diabetes Mellitus Quick Guide,"…glicemia de jejum ≥ 126 mg/dL e HbA1c ≥ 6,5 % em uma mesma amostra…"
+Que situação clínica exige diagnóstico diferencial entre DM1 e DM2?,False,False,False,True,Apresentações atípicas onde a classificação não é clara clinicamente.,Diabetes Mellitus Quick Guide,Exames complementares específicos só devem ser solicitados em casos de apresentações atípicas.
+Por que é importante confirmar diagnóstico antes de iniciar tratamento?,False,False,False,True,Para evitar tratamentos inadequados ou atraso na intervenção correta.,Diabetes Mellitus Quick Guide,…confirmar diagnóstico garante conduta terapêutica correta…

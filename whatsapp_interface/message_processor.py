@@ -1,5 +1,4 @@
 from message_type import MessageType
-from mocks import messages_upsert_audio, messages_upsert_text
 
 
 class MessageProcessor:

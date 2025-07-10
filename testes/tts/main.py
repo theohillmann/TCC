@@ -2,10 +2,8 @@ from TTS.api import TTS
 
 
 def sintetizar_texto(texto, nome_arquivo='output.wav'):
-    # Carrega o modelo pré-treinado multilíngue
     tts = TTS(model_name="tts_models/pt-br/cv/vits", progress_bar=False, gpu=False)
 
-    # Sintetiza o texto e salva em arquivo
     tts.tts_to_file(text=texto, file_path=nome_arquivo)
     print(f"Áudio salvo em: {nome_arquivo}")
 

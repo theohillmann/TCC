@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from processors import MessageProcessor
+from whatsapp_interface.processors import MessageProcessor
 
 app = Flask(__name__)
 

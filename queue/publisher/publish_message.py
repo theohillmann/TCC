@@ -1,5 +1,4 @@
 import pika
-import time
 
 
 def publish_message(routing_key: str, body: str):
@@ -11,9 +10,3 @@ def publish_message(routing_key: str, body: str):
     )
 
     connection.close()
-
-
-for i in range(10):
-    print(1)
-    publish_message("audio", f"{i}")
-    time.sleep(0.5)

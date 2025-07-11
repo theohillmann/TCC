@@ -2,6 +2,7 @@ import os
 import uuid
 import base64
 from datetime import datetime
+from queue.publisher import publish_message
 
 
 class AudioProcessor:
@@ -11,6 +12,7 @@ class AudioProcessor:
         base64_message = self._get_base64_message(message_payload)
         file_path = self._get_file_save_path(message_payload)
         self._save_file(base64_message, file_path)
+        publish_message("audio", file_path)
 
     def _get_base64_message(self, message_payload: dict) -> str | None:
         data = message_payload.get("data", {})

@@ -1,6 +1,6 @@
-from whatsapp_interface.models import MessageType
 from .text_processor import TextProcessor
 from .audio_processor import AudioProcessor
+from whatsapp_interface.models import MessageType
 
 
 class MessageProcessor:

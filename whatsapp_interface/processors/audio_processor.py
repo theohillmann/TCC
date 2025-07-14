@@ -2,7 +2,7 @@ import os
 import uuid
 import base64
 from datetime import datetime
-from queue.publisher import publish_message
+from message_queue.publisher import publish_message
 
 
 class AudioProcessor:

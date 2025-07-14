@@ -1,4 +1,4 @@
-from queue.publisher import publish_message
+from message_queue.publisher import publish_message
 
 
 class TextProcessor:

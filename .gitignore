@@ -9,3 +9,9 @@ wheels/
 # Virtual environments
 .venv
 .idea
+*.pdf
+*.icloud
+.env
+testes/*
+*.zip
+audios/*

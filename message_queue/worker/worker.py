@@ -1,14 +1,18 @@
 import pika
 import time
 import argparse
+from audio_processsing import SpeechToText
 
 
 def start_worker(queue_name: str):
+    speech_to_text = SpeechToText()
     connection = pika.BlockingConnection(pika.ConnectionParameters(host="localhost"))
     channel = connection.channel()
 
     def callback(ch, method, properties, body):
         print(f"Mensagem recebida da {queue_name}: {body.decode()}")
+        text = speech_to_text.process(body.decode())
+        print(text)
         time.sleep(1)
 
     channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=True)

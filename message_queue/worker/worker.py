@@ -2,17 +2,24 @@ import pika
 import time
 import argparse
 from audio_processsing import SpeechToText
+from whatsapp_interface.sender.sender import WhatsAppSender
 
 
 def start_worker(queue_name: str):
     speech_to_text = SpeechToText()
+    whatsapp_sender = WhatsAppSender(
+        "/Users/theocoelho/Documents/academico/faculdade/TCC/tcc_project/audios/554199941200/20250715/94c6ba92-469c-44e1-8462-acc54b871bdb.ogg"
+    )
     connection = pika.BlockingConnection(pika.ConnectionParameters(host="localhost"))
     channel = connection.channel()
 
     def callback(ch, method, properties, body):
         print(f"Mensagem recebida da {queue_name}: {body.decode()}")
-        text = speech_to_text.process(body.decode())
-        print(text)
+        if queue_name == "audio_queue":
+            text = speech_to_text.process(body.decode())
+            number = body.decode().split("/")[1]
+            whatsapp_sender.audio_sender(text, number)
+
         time.sleep(1)
 
     channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=True)

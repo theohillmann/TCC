@@ -1,5 +1,5 @@
 import re
-from abreviation_dict import ABBREVIATIONS_DICT
+from .abreviation_dict import ABBREVIATIONS_DICT
 
 
 class SentencePreProcessing:
@@ -76,73 +76,71 @@ class SentencePreProcessing:
         return re.sub(r"\b(k{2,}|rs{2,}|ha(ha)+|he(he)+|hue{2,})\b", " LAUGH ", text)
 
     def remove_duplicate_punctuations(self, text: str) -> str:
-        # Remove pontuação repetida (!!!, ???, ---)
         return re.sub(r"([!?.\-])\1+", r"\1", text)
 
 
-test_chat_messages = [
-    # 1. abreviações + emoji
-    "Oi vc tá bem? 😊",
-    # 2. múltiplos espaços + “risada”
-    "kkkk   esse meme é mt bom kkkk",
-    # 3. link encurtado + “please”
-    "manda o link pfv 👉 https://bit.ly/3abcXYZ",
-    # 5. CAPS LOCK + pontuação repetida
-    "CHEGUEI!!!!!!!!",
-    # 6. menção estilo rede social
-    "@theo_coelho vc viu aquele post?",
-    # 7. hashtag
-    "Tô viciado nessa série #incrível",
-    # 8. emoji no meio da palavra
-    "Essa pizza tá uma delíciaaaa 🍕🤤",
-    # 9. erros de digitação comuns
-    "Nao consigo logar no sistma, ajuda ae",
-    # 10. contração informal
-    "cê vem hj à noite?",
-    # 11. negação dupla + repetição
-    "eu NÃO aceito não!!!",
-    # 12. HTML perdido
-    "<div>Promo! Só hj 50% off</div>",
-    # 13. URL longa + emoji
-    "Confere aqui: https://www.minhaempresa.com.br/produto/123 😎",
-    # 14. risada alternativa
-    "rsrsrs, entendi nada 😂",
-    # 15. código/ID específico
-    "Pedido #000123-A foi enviado.",
-    # 16. telefone brasileiro
-    "Me chama no (11) 91234-5678 depois.",
-    # 17. e-mail
-    "Qualquer coisa, fala com suporte@exemplo.com.br",
-    # 18. pontuação incomum
-    "Olha só---> AGORA!!!",
-    # 19. link sem https
-    "acesse: www.minha-loja.com/promocao",
-    # 20. emoji repetido
-    "Parabéns!!! 🎉🎉🎉",
-    # 21. misto pt-en + cifrão
-    "Partiu W-I-N $$$ agora msm",
-    # 22. texto vazio só com espaços (edge case)
-    "     ",
-    # 23. zeros à esquerda na hashtag
-    "#0001 pronto e testado",
-    # 24. siglas + acentos ausentes
-    "Qdo chega o relatório da semana?",
-    # 25. varios \n para testar quebras
-    "Linha1\nLinha2\n\nLinha4",
-    # 26. zero-width space escondido
-    "\u200bTem um char invisível aqui.",
-    # 27. emoji de foguete no meio
-    "Entrega foi rá🚀pida demais!",
-    # 28. tag de spoiler informal
-    "/spoiler o vilão era o mordomo",
-    # 29. “...” + abreviação
-    "blz… então até +",
-    # 30. frase curta com CAPS + números
-    "OK 100% CONFIRMADO",
-]
-
 if __name__ == "__main__":
     pre_processor = SentencePreProcessing()
+    test_chat_messages = [
+        # 1. abreviações + emoji
+        "Oi vc tá bem? 😊",
+        # 2. múltiplos espaços + “risada”
+        "kkkk   esse meme é mt bom kkkk",
+        # 3. link encurtado + “please”
+        "manda o link pfv 👉 https://bit.ly/3abcXYZ",
+        # 5. CAPS LOCK + pontuação repetida
+        "CHEGUEI!!!!!!!!",
+        # 6. menção estilo rede social
+        "@theo_coelho vc viu aquele post?",
+        # 7. hashtag
+        "Tô viciado nessa série #incrível",
+        # 8. emoji no meio da palavra
+        "Essa pizza tá uma delíciaaaa 🍕🤤",
+        # 9. erros de digitação comuns
+        "Nao consigo logar no sistma, ajuda ae",
+        # 10. contração informal
+        "cê vem hj à noite?",
+        # 11. negação dupla + repetição
+        "eu NÃO aceito não!!!",
+        # 12. HTML perdido
+        "<div>Promo! Só hj 50% off</div>",
+        # 13. URL longa + emoji
+        "Confere aqui: https://www.minhaempresa.com.br/produto/123 😎",
+        # 14. risada alternativa
+        "rsrsrs, entendi nada 😂",
+        # 15. código/ID específico
+        "Pedido #000123-A foi enviado.",
+        # 16. telefone brasileiro
+        "Me chama no (11) 91234-5678 depois.",
+        # 17. e-mail
+        "Qualquer coisa, fala com suporte@exemplo.com.br",
+        # 18. pontuação incomum
+        "Olha só---> AGORA!!!",
+        # 19. link sem https
+        "acesse: www.minha-loja.com/promocao",
+        # 20. emoji repetido
+        "Parabéns!!! 🎉🎉🎉",
+        # 21. misto pt-en + cifrão
+        "Partiu W-I-N $$$ agora msm",
+        # 22. texto vazio só com espaços (edge case)
+        "     ",
+        # 23. zeros à esquerda na hashtag
+        "#0001 pronto e testado",
+        # 24. siglas + acentos ausentes
+        "Qdo chega o relatório da semana?",
+        # 25. varios \n para testar quebras
+        "Linha1\nLinha2\n\nLinha4",
+        # 26. zero-width space escondido
+        "\u200bTem um char invisível aqui.",
+        # 27. emoji de foguete no meio
+        "Entrega foi rá🚀pida demais!",
+        # 28. tag de spoiler informal
+        "/spoiler o vilão era o mordomo",
+        # 29. “...” + abreviação
+        "blz… então até +",
+        # 30. frase curta com CAPS + números
+        "OK 100% CONFIRMADO",
+    ]
     for text in test_chat_messages:
         processed_text = pre_processor.process_text(text)
         print(f"{text} -> {processed_text}")

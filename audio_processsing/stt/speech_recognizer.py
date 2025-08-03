@@ -3,8 +3,6 @@ import speech_recognition as sr
 
 
 class SpeechRecognizer:
-    """Responsável por reconhecer fala a partir de um arquivo WAV."""
-
     def __init__(self, recognizer: Optional[sr.Recognizer] = None):
         self.recognizer = recognizer or sr.Recognizer()
 

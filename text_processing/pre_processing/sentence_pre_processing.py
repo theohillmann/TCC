@@ -58,7 +58,7 @@ class SentencePreProcessing:
         return re.sub(r"<.*?>", "", text)
 
     def remove_urls(self, text: str) -> str:
-        return re.sub(r"(https?://\S+|www\.\S+)", "", text)
+        return re.sub(r"(https?://\S+|www\.\S+|\S+\.(com|br|org|net)\S*)", "", text)
 
     def remove_emails(self, text: str) -> str:
         return re.sub(r"\S+@\S+\.\S+", "", text)
@@ -70,7 +70,7 @@ class SentencePreProcessing:
         return re.sub(r"#\w+", "", text)
 
     def remove_phone_numbers(self, text: str) -> str:
-        return re.sub(r"\(?\d{2}\)?\s?\d{4,5}-?\d{4}", "", text)
+        return re.sub(r"\b(?!(?:19|20)\d{2}\b)\d+\b", "", text)
 
     def normalize_laughs(self, text: str) -> str:
         return re.sub(r"\b(k{2,}|rs{2,}|ha(ha)+|he(he)+|hue{2,})\b", " LAUGH ", text)

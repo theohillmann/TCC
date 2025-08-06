@@ -7,7 +7,6 @@ channel.exchange_declare(exchange="message_exchange", exchange_type="direct")
 
 channel.queue_declare(queue="text_queue")
 channel.queue_declare(queue="audio_queue")
-channel.queue_declare(queue="text_to_audio")
 
 channel.queue_bind(exchange="message_exchange", queue="text_queue", routing_key="text")
 channel.queue_bind(

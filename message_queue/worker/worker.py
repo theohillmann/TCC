@@ -1,7 +1,11 @@
 import pika
 import time
+import json
 import argparse
+
+from rag.retriever import RAGModel
 from audio_processsing import SpeechToText
+from message_queue.publisher import publish_message
 from whatsapp_interface.sender.sender import WhatsAppSender
 
 
@@ -12,13 +16,26 @@ def start_worker(queue_name: str):
     )
     connection = pika.BlockingConnection(pika.ConnectionParameters(host="localhost"))
     channel = connection.channel()
+    rag_model = RAGModel()
 
     def callback(ch, method, properties, body):
-        print(f"Mensagem recebida da {queue_name}: {body.decode()}")
         if queue_name == "audio_queue":
             text = speech_to_text.process(body.decode())
             number = body.decode().split("/")[1]
-            whatsapp_sender.audio_sender(text, number)
+            print(f"Audio recebido de {number}: {text}")
+            publish_message("text", str({"number": number, "message": text}))
+            print(f"mensagem publicada na fila text_queue: {text}")
+
+        if queue_name == "text_queue":
+            data = body.decode().replace("'", '"')
+            dict_data = json.loads(data)
+            sender_number = dict_data.get("number")
+            message = dict_data.get("message")
+            print(f"mensagem de {dict_data['number']}: {dict_data['message']}")
+            response = rag_model.ask(message)
+            print(f"resposta pronta: {response}")
+            whatsapp_sender.text_sender(str(response), sender_number)
+            print(f"resposta enviada para {sender_number}")
 
         time.sleep(1)
 
@@ -38,7 +55,7 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     queue_name = args.queue_name
-    if queue_name not in ["audio_queue", "text_queue"]:
+    if queue_name not in ["audio_queue", "text_queue", "process_llm_message"]:
         raise ValueError("Insert a valid queue name (audio_queue, text_queue)")
 
     start_worker(args.queue_name)

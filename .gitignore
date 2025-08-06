@@ -15,3 +15,6 @@ wheels/
 testes/*
 *.zip
 audios/*
+lab/
+*.wav
+rag/chroma_knowledge

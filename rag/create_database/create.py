@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from langchain_chroma import Chroma
 from langchain_ollama import ChatOllama, OllamaEmbeddings
@@ -10,7 +11,7 @@ class VectorStore:
     CHUNK_OVERLAP = 150
     EMBEDDING_MODEL = "nomic-embed-text"
     PERSIST_DIR = "../chroma_knowledge"
-    DATA_DIR = ""
+    DATA_DIR = "../data"
 
     def __init__(self):
         self.docs = []
@@ -22,7 +23,11 @@ class VectorStore:
         self.create_vector_store()
 
     def load_pdfs(self):
-        pdf_paths = ["../data/Diabetes Mellitus Quick Guide.pdf"]
+        pdf_paths = [
+            os.path.join(self.DATA_DIR, file)
+            for file in os.listdir(self.DATA_DIR)
+            if file.split(".")[-1].lower() == "pdf"
+        ]
 
         for pdf in pdf_paths:
             self.docs.extend(PyPDFLoader(pdf).load())
